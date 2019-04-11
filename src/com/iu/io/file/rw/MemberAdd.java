@@ -28,15 +28,29 @@ public class MemberAdd {
 		FileWriter fw = null;
 		
 		try {
-			fw = new FileWriter(file, true);
+			fw = new FileWriter(file);
 			for(Member s:arm) {
-				fw.write("\r\n" + s.getGroup() + "\r-");
+				StringBuffer sb = new StringBuffer();
+				sb.append(s.getGroup());
+				sb.append("-");
+				sb.append(s.getName());
+				sb.append("-");
+				sb.append(s.getAge());
+				sb.append("-");
+				sb.append(s.getRes());
+				sb.append("-");
+				sb.append(s.getCompany());
+				sb.append("-");
+				fw.write(sb.toString());
+				sb.append("\r\n");
+				fw.flush();//버퍼를 강제로 비우기
+				/*fw.write("\r\n" + s.getGroup() + "\r-");
 				fw.write(s.getName() + "\r-");
 				fw.write(s.getAge() + "\r-");
 				fw.write(s.getRes() + "\r-");
 				fw.write(s.getCompany() + "\r");
+				fw.flush();//버퍼를 강제로 비우기*/
 			}
-			fw.flush();//버퍼를 강제로 비우기
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
